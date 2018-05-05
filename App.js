@@ -22,13 +22,13 @@ class HomeDemo extends Component {
   render() {
     return (
       <View style={[styles.flex, { marginTop: 80 }]}>
-        <View style={[styles.item, styles.font]} >
+        <View style={[styles.item]} >
           <Text style={[styles.font]} onPress={() => this.props.navigation.navigate('viewDemo', { data: '导航传递参数' })}>View-组件练习</Text>
         </View>
-        <View style={[styles.item, styles.font]} >
+        <View style={[styles.item,]} >
           <Text style={[styles.font]} onPress={() => this.props.navigation.navigate('TextDemo')}>Text-组件练习</Text>
         </View>
-        <View style={[styles.item, styles.font]} >
+        <View style={[styles.item,]} >
           <Text style={[styles.font]} onPress={() => this.props.navigation.navigate('TextInputDemo')}>TextInput-组件练习</Text>
         </View>
       </View>
