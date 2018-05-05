@@ -5,54 +5,93 @@
  */
 
 import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { View, Text, StyleSheet, PixelRatio } from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+import { StackNavigator } from 'react-navigation';
 
-type Props = {};
-export default class App extends Component<Props> {
+import ViewCom from './Components/ViewCom/ViewCom';
+import TextCom from './Components/TextCom/TextCom';
+import TextInputCom from './Components/TextInputCom/TextInputCom';
+
+class HomeDemo extends Component {
+  static navigationOptions = {
+    headerStyle: {
+      height: 0,
+    },
+  }
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+      <View style={[styles.flex, { marginTop: 80 }]}>
+        <View style={[styles.item, styles.font]} >
+          <Text style={[styles.font]} onPress={() => this.props.navigation.navigate('viewDemo', { data: '导航传递参数' })}>View-组件练习</Text>
+        </View>
+        <View style={[styles.item, styles.font]} >
+          <Text style={[styles.font]} onPress={() => this.props.navigation.navigate('TextDemo')}>Text-组件练习</Text>
+        </View>
+        <View style={[styles.item, styles.font]} >
+          <Text style={[styles.font]} onPress={() => this.props.navigation.navigate('TextInputDemo')}>TextInput-组件练习</Text>
+        </View>
       </View>
     );
   }
 }
 
+const RootStack = StackNavigator(
+  {
+    viewDemo: {
+      screen: ViewCom,
+    },
+    TextDemo: {
+      screen: TextCom,
+    },
+    Home: {
+      screen: HomeDemo
+    },
+    TextInputDemo: {
+      screen: TextInputCom
+    }
+  },
+  {
+    initialRouteName: 'Home',
+    navigationOptions: {
+      headerStyle: {
+        // backgroundColor:'red'
+      },
+      headerTintColor: '#666',//标题字体颜色
+      headerTitleStyle: {
+        fontWeight: 'bold'
+      }
+    }
+  }
+);
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  item: {
+    flexBasis: 300 / PixelRatio.get(),
+    width: 300 / PixelRatio.get(),
+    height: 80,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
+    backgroundColor: 'red',
     margin: 10,
+    marginRight: 0,
   },
-  instructions: {
+  font: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
     textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
   },
+  center: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  flex: {
+    flex: 1,
+    flexDirection: 'row',
+  }
 });
+export default class App extends Component {
+  render() {
+    return <RootStack />;
+  }
+}
