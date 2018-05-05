@@ -12,6 +12,7 @@ import { StackNavigator } from 'react-navigation';
 import ViewCom from './Components/ViewCom/ViewCom';
 import TextCom from './Components/TextCom/TextCom';
 import TextInputCom from './Components/TextInputCom/TextInputCom';
+import Touchable from './Components/TouchableCom/TouchableCom';
 
 class HomeDemo extends Component {
   static navigationOptions = {
@@ -31,6 +32,9 @@ class HomeDemo extends Component {
         <View style={[styles.item,]} >
           <Text style={[styles.font]} onPress={() => this.props.navigation.navigate('TextInputDemo')}>TextInput-组件练习</Text>
         </View>
+        <View style={[styles.item,]} >
+          <Text style={[styles.font]} onPress={() => this.props.navigation.navigate('TouchableDemo')}>Touchable-组件练习</Text>
+        </View>
       </View>
     );
   }
@@ -49,6 +53,9 @@ const RootStack = StackNavigator(
     },
     TextInputDemo: {
       screen: TextInputCom
+    },
+    TouchableDemo: {
+      screen: Touchable
     }
   },
   {
@@ -88,6 +95,7 @@ const styles = StyleSheet.create({
   flex: {
     flex: 1,
     flexDirection: 'row',
+    flexWrap:'wrap',
   }
 });
 export default class App extends Component {
