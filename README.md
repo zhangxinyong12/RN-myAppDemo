@@ -4,6 +4,10 @@
 ```
   react-native run-android
 ```
+### 使用导航
+```
+  yarn add react-navigation --save
+```
 #### 导出模块 
 1.组件中 module.exports = Header;
 
