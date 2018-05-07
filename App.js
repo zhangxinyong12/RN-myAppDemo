@@ -13,6 +13,7 @@ import ViewCom from './Components/ViewCom/ViewCom';
 import TextCom from './Components/TextCom/TextCom';
 import TextInputCom from './Components/TextInputCom/TextInputCom';
 import Touchable from './Components/TouchableCom/TouchableCom';
+import ImageCom from './Components/ImageCom/ImageCom';
 
 class HomeDemo extends Component {
   static navigationOptions = {
@@ -35,6 +36,9 @@ class HomeDemo extends Component {
         <View style={[styles.item,]} >
           <Text style={[styles.font]} onPress={() => this.props.navigation.navigate('TouchableDemo')}>Touchable-组件练习</Text>
         </View>
+        <View style={[styles.item,]} >
+          <Text style={[styles.font]} onPress={() => this.props.navigation.navigate('ImageDemo')}>Image-组件练习</Text>
+        </View>
       </View>
     );
   }
@@ -56,6 +60,9 @@ const RootStack = StackNavigator(
     },
     TouchableDemo: {
       screen: Touchable
+    },
+    ImageDemo: {
+      screen: ImageCom
     }
   },
   {
